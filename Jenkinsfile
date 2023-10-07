@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'pwd'
-                sh 'ls -lrt'
+                sh 'echo Jenkins web-hook'
             }
         }
         stage('Test') {
