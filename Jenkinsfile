@@ -18,16 +18,12 @@ pipeline {
             }
         }
 
-        stage ('approval') {
-             steps {
-                input {
-                    message "terraform apply?"
-                }
-             }
-        }
-
         stage ('apply') {
             steps {
+                 timeout(time: 15, unit: "MINUTES") {
+	                    input message: 'Do you want to approve the deployment?', ok: 'Yes'
+	                }
+
                 sh 'terraform apply -auto-approve'
             }
         }
