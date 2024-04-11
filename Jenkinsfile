@@ -20,7 +20,7 @@ pipeline {
 
         stage ('approval') {
             input {
-                terraform apply?
+                message 'terraform apply?'
             }
         }
 
