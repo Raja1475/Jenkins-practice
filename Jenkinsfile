@@ -1,37 +1,23 @@
 pipeline {
-    agent { node { label 'Agent1'}}
+    agent any
 
     stages {
-        stage('Build') {
+        stage ('build') {
             steps {
-                echo 'Building..'
-                sh 'pwd'
-                sh 'echo Jenkins web-hook'
+                echo "building..."
             }
         }
-        stage('Test') {
+
+        stage ('test') {
             steps {
-                echo 'Testing..'
+                echo "testing..."
             }
         }
-        stage('Deploy') {
+
+        stage ('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo "deploying"
             }
-        }
-    }
-
-    post {
-        always {
-            echo "build completed"
-        }
-
-        success {
-            echo "build is success"
-        }
-
-        failure {
-            echo "build is failure  "
         }
     }
 }
