@@ -19,9 +19,11 @@ pipeline {
         }
 
         stage ('input') {
-            input {
-                message "terraform apply?"
-            }
+             steps {
+                input {
+                    message "terraform apply?"
+                }
+             }
         }
 
         stage ('apply') {
