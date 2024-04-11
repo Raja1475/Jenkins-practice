@@ -6,25 +6,27 @@ pipeline {
     }
 
     stages {
-        stage ('build') {
+        stage ('init') {
             steps {
-                echo "building..."
-                sh '''
-                pwd
-                ls -lrt
-                '''
+                sh 'terraform init'
             }
         }
 
-        stage ('test') {
+        stage ('plan') {
             steps {
-                echo "testing..."
+                sh 'terraform plan'
             }
         }
 
-        stage ('Deploy') {
+        stage ('approval') {
+            input {
+                terraform apply?
+            }
+        }
+
+        stage (apply) {
             steps {
-                echo "deploying"
+                sh 'terraform apply -auto-approve'
             }
         }
     }
