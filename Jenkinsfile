@@ -20,4 +20,16 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            echo "build comples"
+        }
+        success {
+            echo "pipeline success"
+        }
+        failure {
+            echo "pipeline failure"
+        }
+    }
 }
