@@ -5,29 +5,24 @@ pipeline {
         ansiColor('xterm')
     }
 
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Branch name')
+        booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy application?')
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'production'], description: 'Select environment')
+        file(name: 'CONFIG_FILE', description: 'Upload configuration file')
+    }
+
     stages {
-        stage ('init') {
+        stage('Example') {
             steps {
-                sh 'terraform init'
-            }
-        }
-
-        stage ('plan') {
-            steps {
-                sh 'terraform plan'
-            }
-        }
-
-        stage ('apply') {
-            steps {
-                 timeout(time: 15, unit: "MINUTES") {
-	                    input message: 'Do you want to approve the deployment?', ok: 'Yes'
-	                }
-
-                sh 'terraform apply -auto-approve'
+                echo "Branch: ${params.BRANCH}"
+                echo "Deploy: ${params.DEPLOY}"
+                echo "Environment: ${params.ENVIRONMENT}"
+                echo "Config File: ${params.CONFIG_FILE}"
             }
         }
     }
+
 
     post {
         always {
