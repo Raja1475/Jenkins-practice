@@ -30,7 +30,7 @@ pipeline {
             echo "build completed"
         }
         success {
-            echo "pipeline success done"
+            echo "pipeline success"
         }
         failure {
             echo "pipeline failure"
